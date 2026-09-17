@@ -11,10 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DevicesRouteImport } from './routes/devices'
-<<<<<<< HEAD
 import { Route as ProviderHealthRouteImport } from './routes/provider-health'
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
 import { Route as ApiAiStatusRouteImport } from './routes/api/ai-status'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiWebsearchRouteImport } from './routes/api/websearch'
@@ -30,14 +27,11 @@ const DevicesRoute = DevicesRouteImport.update({
   path: '/devices',
   getParentRoute: () => rootRouteImport,
 } as any)
-<<<<<<< HEAD
 const ProviderHealthRoute = ProviderHealthRouteImport.update({
   id: '/provider-health',
   path: '/provider-health',
   getParentRoute: () => rootRouteImport,
 } as any)
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
 const ApiAiStatusRoute = ApiAiStatusRouteImport.update({
   id: '/api/ai-status',
   path: '/api/ai-status',
@@ -62,10 +56,7 @@ const ChatChatIdRoute = ChatChatIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/devices': typeof DevicesRoute
-<<<<<<< HEAD
   '/provider-health': typeof ProviderHealthRoute
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
   '/api/ai-status': typeof ApiAiStatusRoute
   '/api/chat': typeof ApiChatRoute
   '/api/websearch': typeof ApiWebsearchRoute
@@ -74,10 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/devices': typeof DevicesRoute
-<<<<<<< HEAD
   '/provider-health': typeof ProviderHealthRoute
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
   '/api/ai-status': typeof ApiAiStatusRoute
   '/api/chat': typeof ApiChatRoute
   '/api/websearch': typeof ApiWebsearchRoute
@@ -87,10 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/devices': typeof DevicesRoute
-<<<<<<< HEAD
   '/provider-health': typeof ProviderHealthRoute
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
   '/api/ai-status': typeof ApiAiStatusRoute
   '/api/chat': typeof ApiChatRoute
   '/api/websearch': typeof ApiWebsearchRoute
@@ -101,10 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/devices'
-<<<<<<< HEAD
     | '/provider-health'
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
     | '/api/ai-status'
     | '/api/chat'
     | '/api/websearch'
@@ -113,10 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/devices'
-<<<<<<< HEAD
     | '/provider-health'
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
     | '/api/ai-status'
     | '/api/chat'
     | '/api/websearch'
@@ -125,10 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/devices'
-<<<<<<< HEAD
     | '/provider-health'
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
     | '/api/ai-status'
     | '/api/chat'
     | '/api/websearch'
@@ -138,10 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DevicesRoute: typeof DevicesRoute
-<<<<<<< HEAD
   ProviderHealthRoute: typeof ProviderHealthRoute
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
   ApiAiStatusRoute: typeof ApiAiStatusRoute
   ApiChatRoute: typeof ApiChatRoute
   ApiWebsearchRoute: typeof ApiWebsearchRoute
@@ -164,7 +137,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DevicesRouteImport
       parentRoute: typeof rootRouteImport
     }
-<<<<<<< HEAD
     '/provider-health': {
       id: '/provider-health'
       path: '/provider-health'
@@ -172,8 +144,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProviderHealthRouteImport
       parentRoute: typeof rootRouteImport
     }
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
     '/api/ai-status': {
       id: '/api/ai-status'
       path: '/api/ai-status'
@@ -208,10 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DevicesRoute: DevicesRoute,
-<<<<<<< HEAD
   ProviderHealthRoute: ProviderHealthRoute,
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
   ApiAiStatusRoute: ApiAiStatusRoute,
   ApiChatRoute: ApiChatRoute,
   ApiWebsearchRoute: ApiWebsearchRoute,
