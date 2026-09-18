@@ -8,7 +8,6 @@ import {
   MessageSquare,
   Monitor,
   Terminal,
-
   Palette,
   Settings2,
   ShieldCheck,
@@ -69,7 +68,6 @@ const SECTIONS: Array<{ id: SettingsSection; label: string; icon: typeof Setting
   { id: "voice", label: "Voice", icon: Mic, blurb: "Speech input and output" },
   { id: "computer", label: "Computer", icon: Monitor, blurb: "Local agent and automation" },
   { id: "coding", label: "Coding", icon: Terminal, blurb: "Workspace, patches, git" },
-
   { id: "memory", label: "Memory", icon: Brain, blurb: "Cross-chat permanent memory" },
   { id: "devices", label: "Devices", icon: Cpu, blurb: "ESP / IoT and NEXUS Hub" },
   { id: "chat", label: "Chat", icon: MessageSquare, blurb: "Conversation behaviour" },
@@ -106,7 +104,6 @@ export function SettingsPanel({
   const [createBranch, setCreateBranch] = useState(false);
   const [codingBusy, setCodingBusy] = useState<string | null>(null);
   const [codingResult, setCodingResult] = useState<{ ok: boolean; summary: string } | null>(null);
-  // Local Ollama: discovered from this browser (the server can't reach the PC).
   const [ollamaModels, setOllamaModels] = useState<OllamaModel[]>([]);
   const [ollamaBase, setOllamaBase] = useState<string | null>(null);
   const [ollamaScanning, setOllamaScanning] = useState(false);
@@ -136,7 +133,6 @@ export function SettingsPanel({
     }
   }
 
-  // Remember the selected section across opens/reloads.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const stored = window.localStorage.getItem(SECTION_KEY) as SettingsSection | null;
@@ -148,7 +144,6 @@ export function SettingsPanel({
 
   useEffect(() => setAgentLive(agentOnline), [agentOnline]);
 
-  // Escape closes the control center.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -158,7 +153,6 @@ export function SettingsPanel({
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  // Load live data only while the panel is open (no extra background polling).
   useEffect(() => {
     if (!open) return;
     let alive = true;
@@ -185,8 +179,6 @@ export function SettingsPanel({
   const chatCount = useMemo(() => (open ? listChats().length : 0), [open]);
   const memoryCount = useMemo(() => (open ? listMemories().length : 0), [open]);
 
-  // Ollama is a first-class provider in this list, but its models come from
-  // `ollama list` on the user's machine instead of the server-side registry.
   const ollamaProvider: ProviderInfo = {
     id: "ollama",
     name: "Ollama (local)",
@@ -235,7 +227,6 @@ export function SettingsPanel({
         </header>
 
         <div className="flex min-h-0 flex-1">
-          {/* Left navigation */}
           <nav
             aria-label="Settings sections"
             className="w-52 shrink-0 overflow-y-auto border-r border-border/60 p-2"
@@ -267,7 +258,6 @@ export function SettingsPanel({
             })}
           </nav>
 
-          {/* Section body */}
           <div className="min-w-0 flex-1 overflow-y-auto p-4">
             <div className="mb-3 flex items-center justify-between">
               <h3 className="font-display text-sm tracking-[0.2em] text-foreground">
@@ -424,7 +414,6 @@ export function SettingsPanel({
                         ok={["HEALTHY", "UNKNOWN", "DEGRADED"].includes(p.state)}
                       />
                     ))}
-<<<<<<< HEAD
                     <ActionRow
                       label="Advanced Provider Health"
                       description="Per-key state, cooldowns and success rates for every provider."
@@ -437,8 +426,6 @@ export function SettingsPanel({
                         OPEN
                       </Link>
                     </ActionRow>
-=======
->>>>>>> 0f64440a9f1edf0fcaa0241cdcb107d224fae356
                   </Group>
                 </>
               )}
@@ -553,13 +540,12 @@ export function SettingsPanel({
                     />
                     <TextRow
                       label="Agent access token"
-                      description="Shared secret. Set NEXUS_AGENT_TOKEN to the same value before starting the local agent so nothing else on your machine can command it. Empty = agent accepts any local caller."
+                      description="Shared secret. Set NEXUS_AGENT_TOKEN to the same value before starting the local agent so nothing else on your machine can command it. Empty = agent accepts any caller."
                       value={settings.computer.agentToken}
                       placeholder="paste your NEXUS_AGENT_TOKEN"
                       onChange={(v) => updateSection("computer", { agentToken: v })}
                     />
                   </Group>
-
 
                   <Group title="CONFIRMATIONS">
                     <ToggleRow
@@ -600,7 +586,6 @@ export function SettingsPanel({
                       description="Absolute path, e.g. C:\Users\you\projects or /home/you/projects. Empty = no containment (not recommended)."
                       value={settings.coding.workspaceRoot}
                       placeholder="C:\Users\you\projects"
-
                       onChange={(v) => updateSection("coding", { workspaceRoot: v })}
                     />
                     <TextRow
@@ -719,12 +704,7 @@ export function SettingsPanel({
                             return;
                           }
                           const target = branchName.trim() || "the current branch";
-                          if (
-                            !window.confirm(
-                              `Commit and push to ${target} in ${workspacePath() || "the workspace"}?`,
-                            )
-                          )
-                            return;
+                          if (!window.confirm(`Commit and push to ${target} in ${workspacePath() || "the workspace"}?`)) return;
                           runCoding("push", () =>
                             runGitWorkflow({
                               message: commitMessage,
@@ -791,8 +771,6 @@ export function SettingsPanel({
                   </Group>
                 </>
               )}
-
-
 
               {section === "memory" && (
                 <Group title="NEXUS MEMORY" hint="Permanent facts shared by every chat. Credentials are always refused.">
